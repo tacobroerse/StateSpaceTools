@@ -33,12 +33,12 @@ for p=1:tseries.ntseries
     % save files
     if isfield(tseries,'name')
         if tseries.ntseries==1
-            savefiletimevariable=strcat(settings.savedir,'/statespaceresults_timevariable_',tseries.name,'.txt');
+            savefiletimevariable=strcat(settings.maindir,'/',settings.savedir,'/statespaceresults_timevariable_',tseries.name,'.txt');
         else
-            savefiletimevariable=strcat(settings.savedir,'/statespaceresults_timevariable_',tseries.name{p},'.txt');
+            savefiletimevariable=strcat(settings.maindir,'/',settings.savedir,'/statespaceresults_timevariable_',tseries.name{p},'.txt');
         end
     else
-        savefiletimevariable=strcat(settings.savedir,'/statespaceresults_timevariable_series_',num2str(p),'_sample_',num2str(nsample),'.txt');
+        savefiletimevariable=strcat(settings.maindir,'/',settings.savedir,'/statespaceresults_timevariable_series_',num2str(p),'_sample_',num2str(nsample),'.txt');
     end
     % update header and array
     if tseries.ntseries==1
@@ -141,7 +141,7 @@ end
 %if isfield(tseries,'name')
 %    savefiletimeinvariable=strcat(settings.savedir,'/statespaceresults_disturbance_covariance_',tseries.name,'.txt');
 %else
-    savefiletimeinvariable=strcat(settings.savedir,'/statespaceresults_disturbance_covariances','.txt');
+    savefiletimeinvariable=strcat(settings.maindir,'/',settings.savedir,'/statespaceresults_disturbance_covariances','.txt');
 %end
 
 % disturbance covariances
@@ -226,9 +226,9 @@ fclose(fid);
 
 %% irregular variance
 if isfield(tseries,'name')
-    savefiletimeinvariable2=strcat(settings.savedir,'/statespaceresults_irregular_covariance_',tseries.generalname,'.txt');
+    savefiletimeinvariable2=strcat(settings.maindir,'/',settings.savedir,'/statespaceresults_irregular_covariance_',tseries.generalname,'.txt');
 else
-    savefiletimeinvariable2=strcat(settings.savedir,'/statespaceresults_irregular_covariance_',num2str(nsample),'.txt');
+    savefiletimeinvariable2=strcat(settings.maindir,'/',settings.savedir,'/statespaceresults_irregular_covariance_',num2str(nsample),'.txt');
 end
 
 % disturbance covariances

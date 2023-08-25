@@ -669,9 +669,9 @@ if settings.plotEM
     % save figure
     if settings.saveplots
         if isfield(tseries,'name')
-            filename=strcat(settings.savedir,'/','EM_optimization_',tseries.generalname);
+            filename=strcat(strcat(settings.maindir,'/',settings.savedir,'/','EM_optimization_',tseries.generalname));
         else
-            filename=strcat(settings.savedir,'/','EM_optimization');
+            filename=strcat(strcat(settings.maindir,'/',settings.savedir,'/','EM_optimization'));
         end
         savefig(filename);
 

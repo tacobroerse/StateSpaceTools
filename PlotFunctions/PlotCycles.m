@@ -73,12 +73,12 @@ if settings.plotconstrainperiod
         if settings.saveplots
             if isfield(tseries,'name')
                 if tseries.ntseries==1
-                    filename=strcat(settings.savedir,'/','cycles_',tseries.name);
+                    filename=strcat(settings.maindir,'/',settings.savedir,'/','cycles_',tseries.name);
                 else
-                filename=strcat(settings.savedir,'/','cycles_',tseries.name{p});
+                filename=strcat(settings.maindir,'/',settings.savedir,'/','cycles_',tseries.name{p});
                 end
             else
-                filename=strcat(settings.savedir,'/','cycles');
+                filename=strcat(settings.maindir,'/',settings.savedir,'/','cycles');
             end
             savefig(filename);
             if settings.savepng

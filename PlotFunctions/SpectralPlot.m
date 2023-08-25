@@ -86,12 +86,12 @@ legend(legendstring);
 if settings.saveplots
     if isfield(tseries,'name')
         if tseries.ntseries==1
-        filename=strcat(settings.savedir,'/','power_spectrum_',tseries.name);
+        filename=strcat(settings.maindir,'/',settings.savedir,'/','power_spectrum_',tseries.name);
         else
-            filename=strcat(settings.savedir,'/','power_spectrum_',tseries.name{p});
+            filename=strcat(settings.maindir,'/',settings.savedir,'/','power_spectrum_',tseries.name{p});
         end
     else
-        filename=strcat(settings.savedir,'/','power_spectrum');
+        filename=strcat(settings.maindir,'/',settings.savedir,'/','power_spectrum');
     end
     savefig(filename);
 end

@@ -298,9 +298,9 @@ sgtitle(maintitle,'FontWeight','normal')
 % save figure
 if settings.saveplots
     if isfield(tseries,'name')
-        filename=strcat(settings.savedir,'/',typeplot,'_',tseries.generalname);
+        filename=strcat(settings.maindir,'/',settings.savedir,'/',typeplot,'_',tseries.generalname);
     else
-        filename=strcat(settings.savedir,'/',typeplot);
+        filename=strcat(settings.maindir,'/',settings.savedir,'/',typeplot);
     end
     savefig(filename);
     if settings.savepng

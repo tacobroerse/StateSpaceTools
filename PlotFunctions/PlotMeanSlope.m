@@ -82,9 +82,9 @@ if settings.estimatemeanslope
         if settings.saveplots
             if isfield(tseries,'name')
                 
-                filename=strcat(settings.savedir,'/','mean_slope_',tseries.generalname);
+                filename=strcat(settings.maindir,'/',settings.savedir,'/','mean_slope_',tseries.generalname);
             else
-                filename=strcat(settings.savedir,'/','mean_slope');
+                filename=strcat(settings.maindir,'/',settings.savedir,'/','mean_slope');
             end
             savefig(filename);
             if settings.savepng
