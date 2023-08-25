@@ -2,6 +2,8 @@
 
 StateSpaceTools is a MATLAB software to estimate time-variable trends, seasonal signals etc. from time series. It follows the theory from the book Durbin, James, and Siem Jan Koopman, Time Series Analysis by State Space Methods, but it is tailored towards filtering mostly geodetic and geophysical time series. 
 
+An example script that shows how to run the code is provided in the folder test.
+
 The univariate case (single time series) has been detailed in the paper Estimating decadal variability in sea level from tide gauge records: An application to the North Sea
 Thomas Frederikse, Riccardo Riva, Cornelis Slobbe, Taco Broerse, Martin Verlaan  https://doi.org/10.1002/2015JC011174
 
