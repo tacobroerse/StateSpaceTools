@@ -337,7 +337,7 @@ switch settings.continuoustime
                     H(1:tseries.ntseries,1:tseries.ntseries,itimes) = distvar.varcovirr*dt(itimes);
                 end
             else
-                H = diag(dt)*distvar.irr;
+                H = eye(length(dt))*distvar.irr;
             end
             
             
