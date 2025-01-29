@@ -87,7 +87,7 @@ function [model,distvar] = StateSpaceSetup(tseries,settings,distvar)
 %
 % Version 2.1 March 2015 DBT Broerse
 % - removed first dimension of Z matrix
-% - added dt in definition of H matrix for continuous time
+% - added dt in definition of H matrix for continuous time (removed in 2025)
 % - phased out state space definitions based on lag operators
 %
 % Version 2.2 April 2015 DBT Broerse
@@ -100,6 +100,9 @@ function [model,distvar] = StateSpaceSetup(tseries,settings,distvar)
 % Version 2.4 June 2018 DBT Broerse
 % - extension to multivariate models
 % - made Z consistent with other matrices in terms of index order
+%
+% Version 2.5 January 2025 DBT Broerse
+% - removed dt from H matrix (it should not be there since it concerns white noise)
 %
 %----------------------------------------------------------------------------
 % remarks:
