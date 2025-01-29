@@ -330,11 +330,11 @@ switch settings.continuoustime
             distvar.eta = zeros(1,n);
             
             %% H: disturbance variance
-            % H = eye(tseries.ntimes,tseries.ntimes)*distvar.irr*dt;
+            % H = eye(tseries.ntimes,tseries.ntimes)*distvar.irr;
             if settings.multivariate
                 
                 for itimes=1:length(tseries.dt)
-                    H(1:tseries.ntseries,1:tseries.ntseries,itimes) = distvar.varcovirr*dt(itimes);
+                    H(1:tseries.ntseries,1:tseries.ntseries,itimes) = distvar.varcovirr;
                 end
             else
                 H = eye(length(dt))*distvar.irr;
