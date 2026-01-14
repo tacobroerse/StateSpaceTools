@@ -87,7 +87,7 @@ function [model,distvar] = StateSpaceSetup(tseries,settings,distvar)
 %
 % Version 2.1 March 2015 DBT Broerse
 % - removed first dimension of Z matrix
-% - added dt in definition of H matrix for continuous time (removed in 2025)
+% - added dt in definition of H matrix for continuous time
 % - phased out state space definitions based on lag operators
 %
 % Version 2.2 April 2015 DBT Broerse
@@ -101,8 +101,8 @@ function [model,distvar] = StateSpaceSetup(tseries,settings,distvar)
 % - extension to multivariate models
 % - made Z consistent with other matrices in terms of index order
 %
-% Version 2.5 January 2025 DBT Broerse
-% - removed dt from H matrix (it should not be there since it concerns white noise)
+% Version 2.5 June 2024 DBT Broerse
+% - removed time step dependence from H for continuous time
 %
 %----------------------------------------------------------------------------
 % remarks:
@@ -333,13 +333,14 @@ switch settings.continuoustime
             distvar.eta = zeros(1,n);
             
             %% H: disturbance variance
-            % H = eye(tseries.ntimes,tseries.ntimes)*distvar.irr;
+           
             if settings.multivariate
                 
                 for itimes=1:length(tseries.dt)
                     H(1:tseries.ntseries,1:tseries.ntseries,itimes) = distvar.varcovirr;
                 end
             else
+                %H = diag(dt)*distvar.irr; % dt should not enter equation
                 H = eye(length(dt))*distvar.irr;
             end
             

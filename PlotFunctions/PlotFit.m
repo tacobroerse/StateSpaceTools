@@ -167,10 +167,13 @@ for p=1:tseries.ntseries
     if settings.saveplots
         
         
-      
-        
-        filename=char(strcat(settings.maindir,'/',settings.savedir,'/',{titlestr},char(NamePlot)));
-        
+      if isfield(settings,'maindir')
+
+          filename=char(strcat(settings.maindir,'/',settings.savedir,'/',{titlestr},char(NamePlot)));
+      else
+          filename=char(strcat(settings.savedir,'/',{titlestr},char(NamePlot)));
+      end
+
         
         savefig(fig,filename);
         if settings.savepng

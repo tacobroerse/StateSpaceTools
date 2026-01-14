@@ -69,21 +69,30 @@ if settings.plotconstrainperiod
         ylabel('phase [rad]')
       %  xlim([tseries.time(1) tseries.time(end)])
          xlim([tseries.time(IndexData(1)) tseries.time(IndexData(end))])
-        % save figure
-        if settings.saveplots
-            if isfield(tseries,'name')
-                if tseries.ntseries==1
-                    filename=strcat(settings.maindir,'/',settings.savedir,'/','cycles_',tseries.name);
-                else
-                filename=strcat(settings.maindir,'/',settings.savedir,'/','cycles_',tseries.name{p});
-                end
-            else
-                filename=strcat(settings.maindir,'/',settings.savedir,'/','cycles');
-            end
-            savefig(filename);
-            if settings.savepng
-                print(fig,strcat(filename,'.png'),'-dpng')
-            end
+         % save figure
+         if settings.saveplots
+             if isfield(tseries,'name')
+                 if tseries.ntseries==1
+                     if iscell(tseries.name)
+                         filename=strcat(settings.maindir,'/',settings.savedir,'/','cycles_',tseries.name{p});
+                     else
+
+                         filename=strcat(settings.maindir,'/',settings.savedir,'/','cycles_',tseries.name);
+                     end
+                 else
+                     if isfield(settings,'maindir')
+                         filename=strcat(settings.maindir,'/',settings.savedir,'/','cycles_',tseries.name{p});
+                     else
+                         filename=strcat(settings.savedir,'/','cycles_',tseries.name{p});
+                     end
+                 end
+             else
+                 filename=strcat(settings.maindir,'/',settings.savedir,'/','cycles');
+             end
+             savefig(filename);
+             if settings.savepng
+                 print(fig,strcat(filename,'.png'),'-dpng')
+             end
         end
     end
 end

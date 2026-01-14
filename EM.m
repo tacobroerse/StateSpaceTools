@@ -327,9 +327,9 @@ while (~converged)
     
     
     if settings.MaxRelDeviationLogL~=0
-MaxDeviation=settings.MaxRelDeviationLogL*abs(LogL)*-1;
+        MaxDeviation=settings.MaxRelDeviationLogL*abs(LogL)*-1;
     else
-MaxDeviation=0;
+        MaxDeviation=0;
     end
 
 
@@ -669,7 +669,12 @@ if settings.plotEM
     % save figure
     if settings.saveplots
         if isfield(tseries,'name')
+            if isfield(settings,'maindir')
             filename=strcat(strcat(settings.maindir,'/',settings.savedir,'/','EM_optimization_',tseries.generalname));
+            else
+            filename=strcat(strcat(settings.savedir,'/','EM_optimization_',tseries.generalname));
+
+            end
         else
             filename=strcat(strcat(settings.maindir,'/',settings.savedir,'/','EM_optimization'));
         end

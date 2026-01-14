@@ -28,9 +28,10 @@ function[time,t,y,ntimes,syn]=synthetictimeseries(syn,synvar,settings)
     Period=(time(end)-time(1))/(ntimes-1);
     t=(time-time(1))/Period+1;
     if ~isempty(settings.periodscycle)
-    syn.lambda=2*pi/settings.periodscycle*Period;
+        syn.lambda=2*pi/settings.periodscycle*Period;
     else
-        syn.lambda=zeros(size(t));
+        %syn.lambda=zeros(size(t));
+        syn.lambda=0;
     end
     if settings.continuoustime
         dt=diff(t);
@@ -43,8 +44,13 @@ function[time,t,y,ntimes,syn]=synthetictimeseries(syn,synvar,settings)
                syn.nu(i+1)=syn.nu(i)+syn.xi(i)*dt(i)+sqrt(synvar.slope)*randn(1)*dt(i);
                % acceleration
                syn.xi(i+1)=syn.xi(i)+sqrt(synvar.acc)*randn(1)*dt(i);
+               if ~isempty(settings.periodscycle)
                syn.cycle(i+1,1)=[cos(syn.lambda*dt(i))  sin(syn.lambda*dt(i))]*syn.cycle(i,:)'+sqrt(synvar.cycle(1))*randn(1)*dt(i);
-               syn.cycle(i+1,2)=[-sin(syn.lambda*dt(i))  cos(syn.lambda*dt(i))]*syn.cycle(i,:)'+sqrt(synvar.cycle(2))*randn(1)*dt(i); 
+               syn.cycle(i+1,2)=[-sin(syn.lambda*dt(i)) cos(syn.lambda*dt(i))]*syn.cycle(i,:)'+sqrt(synvar.cycle(2))*randn(1)*dt(i); 
+               else
+syn.cycle(i+1,1)=0;
+syn.cycle(i+1,2)=0;
+               end
            end
         end
        % y(InterventionTime:end)=y(InterventionTime:end)+Step;

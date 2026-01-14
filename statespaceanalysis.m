@@ -176,7 +176,7 @@ end
 %% check
 if ~isfield(tseries,'generalname')
     if tseries.ntseries==1
-    tseries.generalname=tseries.name;
+        tseries.generalname=tseries.name;
     else
         tseries.generalname=cell2mat(tseries.name);
     end
@@ -240,7 +240,6 @@ end
 
 %% START ACTUAL STATE SPACE ANALYSIS
 % Estimate process variance and irregular component variance
-
 
 if (~settings.fixprocvar)
     if strcmp(settings.optvar,'EM')
@@ -353,9 +352,9 @@ if (~settings.fixprocvar)
                 % save figure
                 if settings.saveplots
                     if isfield(tseries,'name')
-                        filename=strcat(settings.savedir,'/','AR_phi_optimization_',tseries.generalname);
+                        filename=strcat(settings.maindir,'/',settings.savedir,'/','AR_phi_optimization_',tseries.generalname);
                     else
-                        filename=strcat(settings.savedir,'/','AR_phi_optimization');
+                        filename=strcat(settings.maindir,'/',settings.savedir,'/','AR_phi_optimization');
                     end
                     savefig(filename);
                     if settings.savepng

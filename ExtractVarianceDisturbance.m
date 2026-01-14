@@ -122,7 +122,7 @@ if nargin==5;denormalise=false;end
 
 %[Dimension,dummy,ntimes]=size(VarEta);
 
-dt=tseries.dt;
+%dt=tseries.dt;
 
 % set up matrices
 % variances
