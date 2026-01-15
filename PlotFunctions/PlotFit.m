@@ -54,12 +54,13 @@ for p=1:tseries.ntseries
     
     h(3)=plot(tseries.time(IndexData),fits.trend{p}(IndexData),'Color',Colors(2,:));
     legendstring={'observation','fit','trend (1 \sigma)'};
-    hi=2;
+    hi=3;
     if settings.intervention
         for i=1:settings.numberinterventions
             hi=hi+1;
             h(hi)=plot(tseries.time(IndexData),fits.intervention{p}(i,(IndexData)),'Color',Colors(hi,:));
             legendstring=[legendstring,{'step intervention'}];
+            colorintervention(i)=hi;
         end
     end
     
@@ -95,11 +96,16 @@ for p=1:tseries.ntseries
         % plot 1-sigma values
         
         transparanterrorbars(tseries.time(IndexDataVar),fits.trend{p}(IndexDataVar),sqrt(variances.level{p}(IndexDataVar)),Colors(2,:));
-        
+        if settings.intervention
+        for i=1:settings.numberinterventions
+            % make standard deviations zero before the intervention time
+            variancesvec=sqrt(variances.delta{p}(i))*(fits.intervention{p}(i,IndexDataVar)~=0);
+            transparanterrorbars(tseries.time(IndexDataVar),fits.intervention{p}(i,IndexDataVar),variancesvec,Colors(colorintervention(i),:));
+        end
+        end
     end
     
     legend(h,legendstring,'Location','EastOutside');
-   % xlim([tseries.time(1) tseries.time(end)])
     xlim([tseries.time(IndexData(1)) tseries.time(IndexData(end))])
     subplot(2,1,2);hold on
     
